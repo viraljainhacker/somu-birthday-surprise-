@@ -1,26 +1,38 @@
 <!doctype html>
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    ```
     <title>Happy Birthday Somu ❤️</title>
 
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link
       href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
+    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+    ```
   </head>
 
   <body class="cake-mode">
+    ```
+    <!-- ============================= -->
     <!-- CAKE CUTTING SCREEN -->
+    <!-- ============================= -->
+
     <section id="cakeScreen" class="active">
       <div class="cake-heading">
         <h1>Happy Birthday Somu! 🎂</h1>
@@ -28,22 +40,38 @@
         <p>A little surprise before your special messages ❤️</p>
 
         <p class="cake-instruction" id="cakeInstruction">
-          Drag the knife down through the centre of the cake! 🔪
+          Tap the button below to cut your birthday cake! 🔪
         </p>
       </div>
 
       <div class="cake-area" id="cakeArea">
-        <button class="cut-arrow" id="cutArrow" type="button">
+        <!-- CAKE CUT BUTTON -->
+
+        <button
+          class="cut-arrow"
+          id="cutArrow"
+          type="button"
+          onclick="cutBirthdayCake()"
+        >
           <span>🔪</span>
+
           <small>TAP HERE TO CUT 🎂</small>
         </button>
 
+        <!-- KNIFE -->
+
         <div class="cake-knife" id="cakeKnife" aria-hidden="true">🔪</div>
 
+        <!-- BIRTHDAY CAKE -->
+
         <div class="cake" id="birthdayCake">
+          <!-- PHOTO REVEAL -->
+
           <div class="cake-photo-reveal" id="cakePhotoReveal">
             <img src="photo1.jpeg" alt="Somya" />
           </div>
+
+          <!-- LEFT HALF -->
 
           <div class="cake-half left">
             <div class="cake-top">
@@ -53,11 +81,15 @@
             </div>
 
             <div class="cake-layer cake-layer-top"></div>
+
             <div class="cake-layer cake-layer-middle"></div>
+
             <div class="cake-layer cake-layer-bottom"></div>
 
             <div class="cake-decoration">♥ ♥ ♥</div>
           </div>
+
+          <!-- RIGHT HALF -->
 
           <div class="cake-half right">
             <div class="cake-top">
@@ -67,7 +99,9 @@
             </div>
 
             <div class="cake-layer cake-layer-top"></div>
+
             <div class="cake-layer cake-layer-middle"></div>
+
             <div class="cake-layer cake-layer-bottom"></div>
 
             <div class="cake-decoration">♥ ♥ ♥</div>
@@ -76,7 +110,10 @@
       </div>
     </section>
 
+    <!-- ============================= -->
     <!-- CAKE PHOTO REVEAL -->
+    <!-- ============================= -->
+
     <div class="cake-reveal" id="cakeReveal">
       <h2>Happy Birthday Somu! ❤️</h2>
 
@@ -91,27 +128,42 @@
       </button>
     </div>
 
+    <!-- ============================= -->
     <!-- BACKGROUND EFFECTS -->
+    <!-- ============================= -->
+
     <div class="floating-hearts" id="floatingHearts"></div>
 
     <div class="petals" id="petals"></div>
 
-    <!-- BIRTHDAY SONG - CAKE SCREEN -->
+    <!-- ============================= -->
+    <!-- BIRTHDAY MUSIC -->
+    <!-- ============================= -->
+
     <audio id="birthdayMusic" loop autoplay>
       <source src="birthday-song.mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- ROMANTIC SONG - MAIN SURPRISE -->
+    <!-- ============================= -->
+    <!-- ROMANTIC MUSIC -->
+    <!-- ============================= -->
+
     <audio id="romanticMusic" loop>
       <source src="romantic-song.mp3" type="audio/mpeg" />
     </audio>
+
+    <!-- ============================= -->
     <!-- MAIN WEBSITE -->
+    <!-- ============================= -->
+
     <main id="app">
       <!-- WELCOME PAGE -->
+
       <section class="page" id="welcomePage">
         <div class="welcome-content">
           <div class="envelope">
             <i class="fa-solid fa-envelope"></i>
+
             <span>💗</span>
           </div>
 
@@ -126,15 +178,20 @@
 
           <p class="welcome-message">
             Heyyy Somuuu! 🥹❤️
+
             <br /><br />
+
             I have made something special for you. Something filled with love,
             memories, smiles and lots of cute little surprises.
+
             <br /><br />
+
             So, my kutti baby, are you ready?
           </p>
 
           <button class="main-btn" onclick="startSurprise()">
             Open Your Surprise
+
             <i class="fa-solid fa-heart"></i>
           </button>
 
@@ -143,9 +200,11 @@
       </section>
 
       <!-- 10 MESSAGE PAGES GENERATED BY JAVASCRIPT -->
+
       <section id="messagePages"></section>
 
       <!-- GALLERY PAGE -->
+
       <section class="page" id="galleryPage">
         <div class="gallery-content">
           <p class="small-heading">A LITTLE COLLECTION OF HAPPINESS</p>
@@ -159,18 +218,22 @@
           <p class="gallery-message">
             Every picture has its own charm, but every picture has one thing in
             common...
+
             <br />
+
             You look beautiful in all of them, CEO Baby! 🥹
           </p>
 
           <button class="main-btn" onclick="showFinalPage()">
             One Last Surprise
+
             <i class="fa-solid fa-heart"></i>
           </button>
         </div>
       </section>
 
       <!-- FINAL PAGE -->
+
       <section class="page" id="finalPage">
         <div class="final-content">
           <div class="final-heart">❤️</div>
@@ -225,7 +288,9 @@
 
             <h3>
               With lots of love,
+
               <br />
+
               Your Viral ❤️
             </h3>
           </div>
@@ -237,14 +302,21 @@
       </section>
     </main>
 
+    <!-- ============================= -->
     <!-- NAVIGATION -->
+    <!-- ============================= -->
+
     <div class="navigation" id="navigation">
       <button id="nextBtn" onclick="nextPage()">
         Next
+
         <i class="fa-solid fa-arrow-right"></i>
       </button>
     </div>
 
+    <!-- JAVASCRIPT -->
+
     <script src="script.js"></script>
+    ```
   </body>
 </html>
