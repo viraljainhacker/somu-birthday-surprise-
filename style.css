@@ -1225,3 +1225,20 @@ body.cake-mode .navigation {
     height: 165px;
   }
 }
+
+#cakeArea {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: grab;
+}
+
+#birthdayCake {
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#cakeKnife {
+    pointer-events: none;
+}
