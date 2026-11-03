@@ -1,14 +1,13 @@
-javascript;
 /* =====================================
-   SOMU BIRTHDAY SURPRISE
-   JAVASCRIPT
+SOMU BIRTHDAY SURPRISE
+COMPLETE JAVASCRIPT
 ===================================== */
 
 const totalPhotos = 10;
 let currentPage = 0;
 
 /* =====================================
-   PHOTO DATA AND BIRTHDAY MESSAGES
+PHOTO DATA AND BIRTHDAY MESSAGES
 ===================================== */
 
 const birthdayMessages = [
@@ -106,501 +105,588 @@ const birthdayMessages = [
 ];
 
 /* =====================================
-   GENERATE 10 PHOTO PAGES
+GENERATE 10 PHOTO MESSAGE PAGES
 ===================================== */
 
 const messagePages = document.getElementById("messagePages");
 
-for (let i = 0; i < totalPhotos; i++) {
-  const message = birthdayMessages[i];
-  const page = document.createElement("section");
+if (messagePages) {
+  for (let i = 0; i < totalPhotos; i++) {
+    const message = birthdayMessages[i];
 
-  page.className = "message-page";
-  page.id = "messagePage" + (i + 1);
+    const page = document.createElement("section");
+    page.className = "message-page";
+    page.id = "messagePage" + (i + 1);
 
-  const paragraphs = message.paragraphs
-    .map((text) => `<p>${text}</p>`)
-    .join("");
+    const paragraphs = message.paragraphs
+      .map((text) => `<p>${text}</p>`)
+      .join("");
 
-  page.innerHTML = `
-    <div class="message-container">
+    page.innerHTML = `
+        <div class="message-card">
 
-      <div class="message-photo">
-        <div class="photo-frame shape-${i + 1}">
-          <img
-            src="photo${i + 1}.jpeg"
-            alt="Somya Birthday Photo ${i + 1}"
-            loading="eager"
-          >
+            <img
+                src="photo${i + 1}.jpeg"
+                alt="Somya Birthday Photo ${i + 1}"
+                loading="eager"
+            >
+
+            <div class="message-number">
+                ${message.number}
+            </div>
+
+            <h2>${message.title}</h2>
+
+            ${paragraphs}
+
+            <div class="message-decoration">
+                ♡ ✨ ♡
+            </div>
+
         </div>
-      </div>
+    `;
 
-      <div class="message-text">
+    messagePages.appendChild(page);
+  }
+  ```
 
-        <div class="message-number">
-          ${message.number}
-        </div>
-
-        <h1>${message.title}</h1>
-
-        ${paragraphs}
-
-        <div class="message-decoration">
-          ♡ ✨ ♡
-        </div>
-
-      </div>
-
-    </div>
-  `;
-
-  messagePages.appendChild(page);
 }
 
 /* =====================================
-   GENERATE PHOTO GALLERY
+GENERATE PHOTO GALLERY
 ===================================== */
 
 const galleryGrid = document.getElementById("galleryGrid");
 
-for (let i = 1; i <= totalPhotos; i++) {
-  const item = document.createElement("div");
+    if (galleryGrid) {
+        for (let i = 1; i <= totalPhotos; i++) {
+            const item = document.createElement("div");
 
+            ```;
   item.className = "gallery-item";
   item.style.animationDelay = i * 0.12 + "s";
 
   item.innerHTML = `
-    <img
-      src="photo${i}.jpeg"
-      alt="Somya Photo ${i}"
-      loading="eager"
-    >
-  `;
+                < img
+            src = "photo${i}.jpeg"
+            alt = "Somya Photo ${i}"
+            loading = "eager"
+                >
+                `;
 
   galleryGrid.appendChild(item);
 }
+```
 
-/* =====================================
-   PAGE NAVIGATION
-===================================== */
+        }
 
-const galleryPage = document.getElementById("galleryPage");
-const finalPage = document.getElementById("finalPage");
-const navigation = document.getElementById("navigation");
-const nextBtn = document.getElementById("nextBtn");
+        /* =====================================
+        PAGE NAVIGATION
+        ===================================== */
 
-function hideAllPages() {
-  document.querySelectorAll(".page, .message-page").forEach((page) => {
-    page.classList.remove("active");
-  });
-}
+        const galleryPage =
+            document.getElementById("galleryPage") ||
+            document.getElementById("galleryScreen");
 
-function startSurprise() {
+        const finalPage =
+            document.getElementById("finalPage") ||
+            document.getElementById("finalScreen");
+
+        const navigation = document.getElementById("navigation");
+        const nextBtn = document.getElementById("nextBtn");
+
+        function hideAllPages() {
+            document.querySelectorAll(
+                ".screen, .page, .message-page"
+            ).forEach(page => {
+                page.classList.remove("active");
+            });
+        }
+
+        function startSurprise() {
+            hideAllPages();
+
+            ```;
+currentPage = 1;
+
+document.getElementById("messagePage1")?.classList.add("active");
+
+navigation?.classList.add("show");
+
+updateButton();
+
+window.scrollTo(0, 0);
+```
+
+        }
+
+        function nextPage() {
+
+            ```;
+// Message pages 1 to 10
+if (currentPage >= 1 && currentPage < 10) {
   hideAllPages();
 
-  currentPage = 1;
+  currentPage++;
 
-  document.getElementById("messagePage1").classList.add("active");
+  document.getElementById("messagePage" + currentPage)?.classList.add("active");
+}
 
+// Open gallery after message 10
+else if (currentPage === 10) {
+  hideAllPages();
+
+  currentPage = 11;
+
+  galleryPage?.classList.add("active");
+
+  navigation?.classList.add("show");
+}
+
+// Open final message after gallery
+else if (currentPage === 11) {
+  showFinalPage();
+
+  return;
+}
+
+updateButton();
+
+window.scrollTo({
+  top: 0,
+  behavior: "smooth",
+});
+```
+
+        }
+
+        function showFinalPage() {
+
+            ```;
+hideAllPages();
+
+currentPage = 12;
+
+finalPage?.classList.add("active");
+
+navigation?.classList.remove("show");
+
+window.scrollTo({
+  top: 0,
+  behavior: "smooth",
+});
+```
+
+        }
+
+        function updateButton() {
+
+            ```;
+if (!navigation || !nextBtn) return;
+
+if (currentPage >= 1 && currentPage <= 10) {
   navigation.classList.add("show");
 
-  updateButton();
+  nextBtn.innerHTML = `
+        Next Surprise
+                <i i class="fa-solid fa-arrow-right" ></i >
+                    `;
+} else if (currentPage === 11) {
+  navigation.classList.add("show");
 
-  window.scrollTo(0, 0);
-}
-
-function nextPage() {
-  if (currentPage < 10) {
-    hideAllPages();
-
-    currentPage++;
-
-    document
-      .getElementById("messagePage" + currentPage)
-      .classList.add("active");
-  } else if (currentPage === 10) {
-    hideAllPages();
-
-    currentPage = 11;
-
-    galleryPage.classList.add("active");
-
-    navigation.classList.remove("show");
-  }
-
-  updateButton();
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
-
-function showFinalPage() {
-  hideAllPages();
-
-  currentPage = 12;
-
-  finalPage.classList.add("active");
-
+  nextBtn.innerHTML = `
+        Final Message ❤️
+            <i class="fa-solid fa-heart"></i>
+            `;
+} else {
   navigation.classList.remove("show");
+}
+```
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+        }
+
+        // Navigation button click
+        if (nextBtn) {
+            nextBtn.onclick = nextPage;
+        }
+
+        /* =====================================
+        TWO SONG MUSIC SYSTEM
+        ===================================== */
+
+        const birthdayMusic = document.getElementById("birthdayMusic");
+        const romanticMusic = document.getElementById("romanticMusic");
+
+        let birthdayStarted = false;
+        let romanticStarted = false;
+        let musicSwitched = false;
+
+        if (birthdayMusic) {
+            birthdayMusic.volume = 0.65;
+        }
+
+        if (romanticMusic) {
+            romanticMusic.volume = 0.6;
+        }
+
+        // Attempt autoplay
+        window.addEventListener("load", function () {
+
+            ```;
+if (!birthdayMusic) return;
+
+birthdayMusic
+  .play()
+  .then(() => {
+    birthdayStarted = true;
+    console.log("Birthday song started!");
+  })
+  .catch(() => {
+    console.log("Autoplay blocked. Waiting for interaction.");
   });
+```
+
+        });
+
+        // Start birthday music after first interaction
+        function unlockBirthdayMusic() {
+
+            ```;
+if (!birthdayMusic || birthdayStarted || romanticStarted || musicSwitched) {
+  return;
 }
 
-function updateButton() {
-  if (currentPage <= 10) {
-    navigation.classList.add("show");
+birthdayMusic
+  .play()
+  .then(() => {
+    birthdayStarted = true;
+    console.log("Birthday song started after interaction!");
+  })
+  .catch((error) => {
+    console.log("Birthday music issue:", error);
+  });
+```
 
-    nextBtn.innerHTML = `
-      Next Surprise
-      <i class="fa-solid fa-arrow-right"></i>
-    `;
-  } else {
-    navigation.classList.remove("show");
-  }
-}
+        }
 
-/* =====================================
-   TWO SONG MUSIC SYSTEM
-===================================== */
+        document.addEventListener(
+            "pointerdown",
+            unlockBirthdayMusic,
+            {
+                once: true,
+                capture: true
+            }
+        );
 
-const birthdayMusic = document.getElementById("birthdayMusic");
-const romanticMusic = document.getElementById("romanticMusic");
+        // Switch to romantic music
+        function switchToRomanticSong() {
 
-let birthdayStarted = false;
-let romanticStarted = false;
-let musicSwitched = false;
+            ```;
+if (!romanticMusic || musicSwitched) return;
 
-// Volume settings
+musicSwitched = true;
 
-birthdayMusic.volume = 0.65;
-romanticMusic.volume = 0.6;
-
-// Attempt autoplay when website opens.
-// Browsers may block this until user interaction.
-
-window.addEventListener("load", function () {
-  birthdayMusic
-    .play()
-    .then(() => {
-      birthdayStarted = true;
-
-      console.log("Birthday song started!");
-    })
-    .catch(() => {
-      console.log("Autoplay blocked. Waiting for user interaction.");
-    });
-});
-
-// Start birthday song on first user interaction.
-// This is important for Android browsers.
-
-function unlockBirthdayMusic() {
-  if (birthdayStarted || romanticStarted || musicSwitched) {
-    return;
-  }
-
-  birthdayMusic
-    .play()
-    .then(() => {
-      birthdayStarted = true;
-
-      console.log("Birthday song started after interaction!");
-    })
-    .catch((error) => {
-      console.log("Birthday music playback issue:", error);
-    });
-}
-
-// Pointer interaction works on modern Android, iOS and desktop.
-
-document.addEventListener("pointerdown", unlockBirthdayMusic, {
-  once: true,
-  capture: true,
-});
-
-// Fallback for browsers that do not support pointer events.
-
-document.addEventListener("touchstart", unlockBirthdayMusic, {
-  once: true,
-  capture: true,
-  passive: true,
-});
-
-// Switch from birthday song to romantic song.
-
-function switchToRomanticSong() {
-  if (musicSwitched) {
-    return;
-  }
-
-  musicSwitched = true;
-
-  // Stop birthday song completely.
-
+if (birthdayMusic) {
   birthdayMusic.pause();
   birthdayMusic.currentTime = 0;
+}
 
-  birthdayStarted = false;
+birthdayStarted = false;
 
-  // Stop any other audio before playing romantic song.
+romanticMusic.pause();
+romanticMusic.currentTime = 0;
+romanticMusic.volume = 0.6;
 
-  document.querySelectorAll("audio").forEach((audio) => {
-    if (audio !== romanticMusic) {
-      audio.pause();
-      audio.currentTime = 0;
-    }
+romanticMusic
+  .play()
+  .then(() => {
+    romanticStarted = true;
+    console.log("Romantic song started!");
+  })
+  .catch((error) => {
+    console.log("Romantic music issue:", error);
   });
+```
 
-  // Start romantic song.
+        }
 
-  romanticMusic.pause();
-  romanticMusic.currentTime = 0;
-  romanticMusic.volume = 0.6;
+        /* =====================================
+        FLOATING HEARTS
+        ===================================== */
 
-  romanticMusic
-    .play()
-    .then(() => {
-      romanticStarted = true;
+        const heartsContainer = document.getElementById("floatingHearts");
 
-      console.log("Romantic song started!");
-    })
-    .catch((error) => {
-      console.log("Romantic music playback issue:", error);
-    });
-}
+        const heartSymbols = ["❤️", "💕", "💗", "♡", "💖"];
 
-/* =====================================
-   FLOATING HEARTS
-===================================== */
+        function createHeart() {
 
-const heartsContainer = document.getElementById("floatingHearts");
+            ```;
+if (!heartsContainer) return;
 
-const heartSymbols = ["❤️", "💕", "💗", "♡", "💖"];
+const heart = document.createElement("span");
 
-function createHeart() {
-  const heart = document.createElement("span");
+heart.className = "heart";
 
-  heart.className = "heart";
+heart.innerHTML = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
 
-  heart.innerHTML =
-    heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+heart.style.left = Math.random() * 100 + "%";
+heart.style.fontSize = 12 + Math.random() * 22 + "px";
 
-  heart.style.left = Math.random() * 100 + "%";
+const duration = 5 + Math.random() * 7;
 
-  heart.style.fontSize = 12 + Math.random() * 22 + "px";
+heart.style.animationDuration = duration + "s";
 
-  const duration = 5 + Math.random() * 7;
+heartsContainer.appendChild(heart);
 
-  heart.style.animationDuration = duration + "s";
+setTimeout(() => {
+  heart.remove();
+}, duration * 1000);
 
-  heartsContainer.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, duration * 1000);
-}
+        
 
-setInterval(createHeart, 450);
+        setInterval(createHeart, 450);
 
-/* =====================================
-   FALLING ROSE PETALS
-===================================== */
+        /* =====================================
+        FALLING ROSE PETALS
+        ===================================== */
 
-const petalsContainer = document.getElementById("petals");
+        const petalsContainer = document.getElementById("petals");
 
 function createPetal() {
-  const petal = document.createElement("span");
 
-  petal.className = "petal";
+    ;
+    if (!petalsContainer) return;
 
-  petal.innerHTML = "🌸";
+    const petal = document.createElement("span");
 
-  petal.style.left = Math.random() * 100 + "%";
+    petal.className = "petal";
+    petal.innerHTML = "🌸";
 
-  petal.style.fontSize = 12 + Math.random() * 15 + "px";
+    petal.style.left = Math.random() * 100 + "%";
+    petal.style.fontSize = 12 + Math.random() * 15 + "px";
 
-  const duration = 7 + Math.random() * 6;
+    const duration = 7 + Math.random() * 6;
 
-  petal.style.animationDuration = duration + "s";
+    petal.style.animationDuration = duration + "s";
 
-  petalsContainer.appendChild(petal);
-
-  setTimeout(() => {
-    petal.remove();
-  }, duration * 1000);
-}
-
-setInterval(createPetal, 1800);
-
-// Initial effects
-
-for (let i = 0; i < 12; i++) {
-  setTimeout(createHeart, i * 250);
-}
-
-for (let i = 0; i < 5; i++) {
-  setTimeout(createPetal, i * 500);
-}
-
-/* =====================================
-   VERTICAL CAKE CUTTING - ANDROID FIX
-===================================== */
-
-const cakeScreen = document.getElementById("cakeScreen");
-const cakeArea = document.getElementById("cakeArea");
-const birthdayCake = document.getElementById("birthdayCake");
-const cakeKnife = document.getElementById("cakeKnife");
-const cutArrow = document.getElementById("cutArrow");
-const cakePhotoReveal = document.getElementById("cakePhotoReveal");
-const cakeReveal = document.getElementById("cakeReveal");
-const cakeInstruction = document.getElementById("cakeInstruction");
-const cakeNextBtn = document.getElementById("cakeNextBtn");
-
-let isCutting = false;
-let cakeCutComplete = false;
-let cutStartY = 0;
-let cutProgress = 0;
-
-// ANDROID + DESKTOP TAP TO CUT
-
-cutArrow.addEventListener("click", function (e) {
-  e.preventDefault();
-
-  if (cakeCutComplete) return;
-
-  cutArrow.classList.add("hide");
-
-  cakeInstruction.textContent = "Cutting your birthday cake... ❤️";
-
-  cakeKnife.style.display = "block";
-  cakeKnife.style.left = "50%";
-  cakeKnife.style.top = "0%";
-
-  cakeKnife.style.transition = "top 1.2s ease";
-
-  requestAnimationFrame(() => {
-    cakeKnife.style.top = "100%";
-  });
-
-  cakePhotoReveal.style.transition = "clip-path 1.2s ease";
-
-  cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
-
-  setTimeout(() => {
-    completeCakeCut();
-  }, 1250);
-});
-
-/* =====================================
-   COMPLETE CAKE CUT
-===================================== */
-
-function completeCakeCut() {
-  if (cakeCutComplete) return;
-
-  cakeCutComplete = true;
-
-  isCutting = false;
-
-  cutProgress = 100;
-
-  cakeKnife.style.display = "none";
-
-  cutArrow.classList.add("hide");
-
-  cakeInstruction.textContent = "You did it Somu! ❤️🎂";
-
-  cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
-
-  // Separate the cake halves.
-
-  birthdayCake.classList.add("fully-cut");
-
-  // Celebration effects.
-
-  createCakeConfetti();
-
-  // Show final cake photo reveal.
-
-  setTimeout(() => {
-    cakeReveal.classList.add("show");
-  }, 1400);
-}
-
-/* =====================================
-   CAKE CONFETTI
-===================================== */
-
-function createCakeConfetti() {
-  const symbols = ["💗", "✨", "🎉", "💕", "🌸", "❤️"];
-
-  for (let i = 0; i < 70; i++) {
-    const item = document.createElement("div");
-
-    item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-
-    item.style.position = "fixed";
-
-    item.style.left = Math.random() * 100 + "vw";
-
-    item.style.top = "-30px";
-
-    item.style.fontSize = "22px";
-
-    item.style.zIndex = "3000";
-
-    item.style.pointerEvents = "none";
-
-    document.body.appendChild(item);
-
-    const duration = 2500 + Math.random() * 1500;
-
-    item.animate(
-      [
-        {
-          transform: "translateY(0) rotate(0deg)",
-          opacity: 1,
-        },
-        {
-          transform: "translateY(110vh) rotate(720deg)",
-          opacity: 0,
-        },
-      ],
-      {
-        duration: duration,
-        easing: "ease-in",
-      },
-    );
+    petalsContainer.appendChild(petal);
 
     setTimeout(() => {
-      item.remove();
-    }, duration);
-  }
+        petal.remove();
+    }, duration * 1000);
+    ```
+
+        }
+
+        setInterval(createPetal, 1800);
+
+        // Initial effects
+        for (let i = 0; i < 12; i++) {
+            setTimeout(createHeart, i * 250);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createPetal, i * 500);
+        }
+
+        /* =====================================
+        CAKE CUTTING - ANDROID + DESKTOP FIX
+        ===================================== */
+
+        const cakeScreen = document.getElementById("cakeScreen");
+        const cakeArea = document.getElementById("cakeArea");
+        const birthdayCake = document.getElementById("birthdayCake");
+        const cakeKnife = document.getElementById("cakeKnife");
+        const cutArrow = document.getElementById("cutArrow");
+        const cakePhotoReveal = document.getElementById("cakePhotoReveal");
+        const cakeReveal = document.getElementById("cakeReveal");
+        const cakeInstruction = document.getElementById("cakeInstruction");
+        const cakeNextBtn = document.getElementById("cakeNextBtn");
+
+        let cakeCutComplete = false;
+        let cakeCutStarted = false;
+
+        // Global function also supports HTML onclick
+        window.cutBirthdayCake = function () {
+
+            ```;
+    if (cakeCutComplete || cakeCutStarted) return;
+
+    cakeCutStarted = true;
+
+    if (cutArrow) {
+        cutArrow.classList.add("hide");
+    }
+
+    if (cakeInstruction) {
+        cakeInstruction.textContent = "Cutting your birthday cake... ❤️";
+    }
+
+    // Animate knife
+    if (cakeKnife) {
+        cakeKnife.style.display = "block";
+        cakeKnife.style.left = "50%";
+        cakeKnife.style.top = "0%";
+        cakeKnife.style.transition = "top 1.2s ease";
+
+        requestAnimationFrame(() => {
+            cakeKnife.style.top = "100%";
+        });
+    }
+
+    // Reveal photo
+    if (cakePhotoReveal) {
+        cakePhotoReveal.style.transition = "clip-path 1.2s ease";
+
+        cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
+    }
+
+    setTimeout(() => {
+        completeCakeCut();
+    }, 1250);
+    ```
+
+        };
+
+        // Also support direct button event
+        if (cutArrow) {
+
+            ```;
+    cutArrow.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        window.cutBirthdayCake();
+    });
+    ```
+
+        }
+
+        /* =====================================
+        COMPLETE CAKE CUT
+        ===================================== */
+
+        function completeCakeCut() {
+
+            ```;
+    if (cakeCutComplete) return;
+
+    cakeCutComplete = true;
+
+    if (cakeKnife) {
+        cakeKnife.style.display = "none";
+    }
+
+    if (cutArrow) {
+        cutArrow.classList.add("hide");
+    }
+
+    if (cakeInstruction) {
+        cakeInstruction.textContent = "You did it Somu! ❤️🎂";
+    }
+
+    if (cakePhotoReveal) {
+        cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
+    }
+
+    // Separate cake halves
+    if (birthdayCake) {
+        birthdayCake.classList.add("fully-cut");
+    }
+
+    // Celebration
+    createCakeConfetti();
+
+    // Show photo reveal popup
+    setTimeout(() => {
+        if (cakeReveal) {
+            cakeReveal.classList.add("show");
+        }
+    }, 1400);
+    ```
+
+        }
+
+        /* =====================================
+        CAKE CONFETTI
+        ===================================== */
+
+        function createCakeConfetti() {
+
+            ```;
+    const symbols = ["💗", "✨", "🎉", "💕", "🌸", "❤️"];
+
+    for (let i = 0; i < 70; i++) {
+        const item = document.createElement("div");
+
+        item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+        item.style.position = "fixed";
+        item.style.left = Math.random() * 100 + "vw";
+        item.style.top = "-30px";
+        item.style.fontSize = "22px";
+        item.style.zIndex = "3000";
+        item.style.pointerEvents = "none";
+
+        document.body.appendChild(item);
+
+        const duration = 2500 + Math.random() * 1500;
+
+        item.animate(
+            [
+                {
+                    transform: "translateY(0) rotate(0deg)",
+                    opacity: 1,
+                },
+                {
+                    transform: "translateY(110vh) rotate(720deg)",
+                    opacity: 0,
+                },
+            ],
+            {
+                duration: duration,
+                easing: "ease-in",
+            },
+        );
+
+        setTimeout(() => {
+            item.remove();
+        }, duration);
+    }
+    ```
+
+        }
+
+        /* =====================================
+        CONTINUE TO BIRTHDAY MESSAGES
+        ===================================== */
+
+        if (cakeNextBtn) {
+
+            ```;
+    cakeNextBtn.addEventListener("click", function () {
+        // Switch music during user interaction
+        switchToRomanticSong();
+
+        // Hide cake popup
+        if (cakeReveal) {
+            cakeReveal.classList.remove("show");
+        }
+
+        // Hide cake screen
+        if (cakeScreen) {
+            cakeScreen.classList.remove("active");
+        }
+
+        document.body.classList.remove("cake-mode");
+
+        // Open first birthday message
+        startSurprise();
+    });
+
+    /* =====================================
+            END OF SCRIPT
+            ===================================== */
+
+    console.log("Somu Birthday Surprise Loaded Successfully ❤️");
 }
-
-/* =====================================
-   CONTINUE TO BIRTHDAY MESSAGES
-===================================== */
-
-cakeNextBtn.addEventListener("click", function () {
-  // Switch music first, during the user's click interaction.
-
-  switchToRomanticSong();
-
-  // Hide cake reveal.
-
-  cakeReveal.classList.remove("show");
-
-  cakeScreen.classList.remove("active");
-
-  document.body.classList.remove("cake-mode");
-
-  // Open birthday messages.
-
-  startSurprise();
-});
