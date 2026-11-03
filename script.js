@@ -448,7 +448,7 @@ for (let i = 0; i < 5; i++) {
 }
 
 /* =====================================
-   VERTICAL CAKE CUTTING
+   VERTICAL CAKE CUTTING - ANDROID FIX
 ===================================== */
 
 const cakeScreen = document.getElementById("cakeScreen");
@@ -466,64 +466,51 @@ let cakeCutComplete = false;
 let cutStartY = 0;
 let cutProgress = 0;
 
-// Start cutting from the top-centre.
-
 cakeArea.addEventListener("pointerdown", function (e) {
   if (cakeCutComplete) return;
 
   const rect = birthdayCake.getBoundingClientRect();
 
   const startZone =
-    e.clientX > rect.left + rect.width * 0.3 &&
-    e.clientX < rect.left + rect.width * 0.7 &&
-    e.clientY >= rect.top - 10 &&
-    e.clientY <= rect.top + 45;
+    e.clientX > rect.left + rect.width * 0.15 &&
+    e.clientX < rect.left + rect.width * 0.85 &&
+    e.clientY >= rect.top - 30 &&
+    e.clientY <= rect.top + 100;
 
   if (!startZone) return;
 
   isCutting = true;
-
   cutStartY = e.clientY;
 
   cutArrow.classList.add("hide");
-
   cakeKnife.style.display = "block";
+
+  cakeArea.setPointerCapture(e.pointerId);
 
   cakeKnife.style.left =
     e.clientX - cakeArea.getBoundingClientRect().left + "px";
 
   cakeKnife.style.top = e.clientY - cakeArea.getBoundingClientRect().top + "px";
 
-  cakeArea.setPointerCapture(e.pointerId);
-
   e.preventDefault();
 });
-
-// Move knife and reveal photo.
 
 cakeArea.addEventListener("pointermove", function (e) {
   if (!isCutting || cakeCutComplete) return;
 
   const cakeRect = birthdayCake.getBoundingClientRect();
-
   const areaRect = cakeArea.getBoundingClientRect();
 
   const distance = Math.max(0, e.clientY - cutStartY);
 
-  cutProgress = Math.max(0, Math.min(100, (distance / cakeRect.height) * 100));
-
-  // Knife stays in centre while moving vertically.
+  cutProgress = Math.min(100, (distance / cakeRect.height) * 100);
 
   cakeKnife.style.left =
     cakeRect.left + cakeRect.width / 2 - areaRect.left + "px";
 
   cakeKnife.style.top = e.clientY - areaRect.top + "px";
 
-  // Reveal photo gradually.
-
   cakePhotoReveal.style.clipPath = `inset(0 0 ${100 - cutProgress}% 0)`;
-
-  // Update instruction.
 
   cakeInstruction.textContent =
     cutProgress < 100
