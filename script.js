@@ -466,70 +466,34 @@ let cakeCutComplete = false;
 let cutStartY = 0;
 let cutProgress = 0;
 
-cakeArea.addEventListener("pointerdown", function (e) {
+// ANDROID + DESKTOP TAP TO CUT
+
+cutArrow.addEventListener("click", function (e) {
+  e.preventDefault();
+
   if (cakeCutComplete) return;
 
-  const rect = birthdayCake.getBoundingClientRect();
-
-  const startZone =
-    e.clientX > rect.left + rect.width * 0.15 &&
-    e.clientX < rect.left + rect.width * 0.85 &&
-    e.clientY >= rect.top - 30 &&
-    e.clientY <= rect.top + 100;
-
-  if (!startZone) return;
-
-  isCutting = true;
-  cutStartY = e.clientY;
-
   cutArrow.classList.add("hide");
+
+  cakeInstruction.textContent = "Cutting your birthday cake... ❤️";
+
   cakeKnife.style.display = "block";
+  cakeKnife.style.left = "50%";
+  cakeKnife.style.top = "0%";
 
-  cakeArea.setPointerCapture(e.pointerId);
+  cakeKnife.style.transition = "top 1.2s ease";
 
-  cakeKnife.style.left =
-    e.clientX - cakeArea.getBoundingClientRect().left + "px";
+  requestAnimationFrame(() => {
+    cakeKnife.style.top = "100%";
+  });
 
-  cakeKnife.style.top = e.clientY - cakeArea.getBoundingClientRect().top + "px";
+  cakePhotoReveal.style.transition = "clip-path 1.2s ease";
 
-  e.preventDefault();
-});
+  cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
 
-cakeArea.addEventListener("pointermove", function (e) {
-  if (!isCutting || cakeCutComplete) return;
-
-  const cakeRect = birthdayCake.getBoundingClientRect();
-  const areaRect = cakeArea.getBoundingClientRect();
-
-  const distance = Math.max(0, e.clientY - cutStartY);
-
-  cutProgress = Math.min(100, (distance / cakeRect.height) * 100);
-
-  cakeKnife.style.left =
-    cakeRect.left + cakeRect.width / 2 - areaRect.left + "px";
-
-  cakeKnife.style.top = e.clientY - areaRect.top + "px";
-
-  cakePhotoReveal.style.clipPath = `inset(0 0 ${100 - cutProgress}% 0)`;
-
-  cakeInstruction.textContent =
-    cutProgress < 100
-      ? "Keep going Somu! Cut all the way down ❤️"
-      : "You did it Somu! ❤️🎂";
-
-  if (cutProgress >= 100) {
+  setTimeout(() => {
     completeCakeCut();
-  }
-
-  e.preventDefault();
-});
-
-cakeArea.addEventListener("pointerup", function () {
-  isCutting = false;
-});
-
-cakeArea.addEventListener("pointercancel", function () {
-  isCutting = false;
+  }, 1250);
 });
 
 /* =====================================
