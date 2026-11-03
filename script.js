@@ -139,7 +139,7 @@ for (let i = 0; i < totalPhotos; i++) {
       <div class="message-photo">
         <div class="photo-frame shape-${i + 1}">
           <img
-            src="images/photo${i + 1}.jpeg"
+            src="photo${i + 1}.jpeg"
             alt="Somya Birthday Photo ${i + 1}"
             loading="eager"
           >
@@ -182,7 +182,7 @@ for (let i = 1; i <= totalPhotos; i++) {
 
   item.innerHTML = `
     <img
-      src="images/photo${i}.jpeg"
+      src="photo${i}.jpeg"
       alt="Somya Photo ${i}"
       loading="eager"
     >
