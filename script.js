@@ -1,16 +1,15 @@
+javascript;
 /* =====================================
    SOMU BIRTHDAY SURPRISE
    JAVASCRIPT
 ===================================== */
 
 const totalPhotos = 10;
-
 let currentPage = 0;
-let musicStarted = false;
 
-// =====================================
-// PHOTO DATA AND BIRTHDAY MESSAGES
-// =====================================
+/* =====================================
+   PHOTO DATA AND BIRTHDAY MESSAGES
+===================================== */
 
 const birthdayMessages = [
   {
@@ -22,7 +21,6 @@ const birthdayMessages = [
       "Tum bhi unhi logon mein se ek ho. Bas aise hi hamesha smile karti rehna, meri cute si Somu! 🥹💕",
     ],
   },
-
   {
     title: "My CEO Baby 👑",
     number: "02 — OFFICIAL CEO",
@@ -32,7 +30,6 @@ const birthdayMessages = [
       "I hope tum apni life mein itni successful bano ki ek din tumhare saare dreams tumhare saamne khade hon. Aur haan, apni CEO wali smile kabhi mat khona! 👑",
     ],
   },
-
   {
     title: "Beautiful Inside & Out 🌸",
     number: "03 — A LITTLE COMPLIMENT",
@@ -42,7 +39,6 @@ const birthdayMessages = [
       "I genuinely wish ki tumhari life mein hamesha aise log rahen jo tumhari smile ki value samjhein, tumhari respect karein aur tumhe kabhi apni worth doubt na karne dein.",
     ],
   },
-
   {
     title: "A Rose For My Rose 🌹",
     number: "04 — BLOOM BEAUTIFULLY",
@@ -52,7 +48,6 @@ const birthdayMessages = [
       "Kabhi apne aap ko kisi aur se compare mat karna. Tumhari apni ek alag identity hai aur tum apne way mein absolutely special ho.",
     ],
   },
-
   {
     title: "You Deserve Happiness 💗",
     number: "05 — FROM MY HEART",
@@ -62,7 +57,6 @@ const birthdayMessages = [
       "Tumhare saare dreams complete hon, tum jo bhi achieve karna chahti ho woh sab achieve karo. Aur haan, khud ka khayal rakhna bhi utna hi important hai, baby! ❤️",
     ],
   },
-
   {
     title: "My Favourite Kutti 😂",
     number: "06 — LITTLE TROUBLEMAKER",
@@ -72,7 +66,6 @@ const birthdayMessages = [
       "Bas ek request hai: apna ye cute sa nature kabhi change mat karna. Thoda irritate karna allowed hai, lekin smile karna compulsory hai. Samjhi baby? 😂❤️",
     ],
   },
-
   {
     title: "A Beautiful Connection 🦋",
     number: "07 — SOMETHING SPECIAL",
@@ -82,7 +75,6 @@ const birthdayMessages = [
       "I am genuinely glad ki humari baat hui. I hope aage bhi humari conversations aise hi achhi rahen aur hum ek doosre ko aur achhe se jaan sakein.",
     ],
   },
-
   {
     title: "One Day, Hopefully... 🥹",
     number: "08 — UNTIL WE MEET",
@@ -92,7 +84,6 @@ const birthdayMessages = [
       "Pata nahi woh din kab aayega, but I genuinely hope jab bhi aaye, woh ek bahut achha moment ho. Tab tak apna khayal rakhna, Somu! ❤️",
     ],
   },
-
   {
     title: "Keep Shining, Baby ✨",
     number: "09 — YOUR BEAUTIFUL FUTURE",
@@ -102,7 +93,6 @@ const birthdayMessages = [
       "Always believe in yourself. I hope tumhare future mein itni happiness ho ki tumhe apne difficult days bhi bahut chhote lagne lagein. ✨",
     ],
   },
-
   {
     title: "Happy Birthday, Baby! 🎂",
     number: "10 — YOUR SPECIAL DAY",
@@ -115,15 +105,14 @@ const birthdayMessages = [
   },
 ];
 
-// =====================================
-// GENERATE 10 PHOTO PAGES
-// =====================================
+/* =====================================
+   GENERATE 10 PHOTO PAGES
+===================================== */
 
 const messagePages = document.getElementById("messagePages");
 
 for (let i = 0; i < totalPhotos; i++) {
   const message = birthdayMessages[i];
-
   const page = document.createElement("section");
 
   page.className = "message-page";
@@ -168,9 +157,9 @@ for (let i = 0; i < totalPhotos; i++) {
   messagePages.appendChild(page);
 }
 
-// =====================================
-// GENERATE PHOTO GALLERY
-// =====================================
+/* =====================================
+   GENERATE PHOTO GALLERY
+===================================== */
 
 const galleryGrid = document.getElementById("galleryGrid");
 
@@ -191,13 +180,12 @@ for (let i = 1; i <= totalPhotos; i++) {
   galleryGrid.appendChild(item);
 }
 
-// =====================================
-// PAGE NAVIGATION
-// =====================================
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
 
 const galleryPage = document.getElementById("galleryPage");
 const finalPage = document.getElementById("finalPage");
-
 const navigation = document.getElementById("navigation");
 const nextBtn = document.getElementById("nextBtn");
 
@@ -208,21 +196,6 @@ function hideAllPages() {
 }
 
 function startSurprise() {
-  if (!musicStarted) {
-    const music = document.getElementById("romanticMusic");
-
-    music.volume = 0.6;
-
-    music
-      .play()
-      .then(() => {
-        musicStarted = true;
-      })
-      .catch((error) => {
-        console.log("Music playback issue:", error);
-      });
-  }
-
   hideAllPages();
 
   currentPage = 1;
@@ -291,26 +264,31 @@ function updateButton() {
   }
 }
 
-// =====================================
-// TWO SONG MUSIC SYSTEM
-// =====================================
+/* =====================================
+   TWO SONG MUSIC SYSTEM
+===================================== */
 
 const birthdayMusic = document.getElementById("birthdayMusic");
 const romanticMusic = document.getElementById("romanticMusic");
 
 let birthdayStarted = false;
 let romanticStarted = false;
+let musicSwitched = false;
 
 // Volume settings
+
 birthdayMusic.volume = 0.65;
 romanticMusic.volume = 0.6;
 
-// Try birthday song as soon as website opens
+// Attempt autoplay when website opens.
+// Browsers may block this until user interaction.
+
 window.addEventListener("load", function () {
   birthdayMusic
     .play()
     .then(() => {
       birthdayStarted = true;
+
       console.log("Birthday song started!");
     })
     .catch(() => {
@@ -318,51 +296,87 @@ window.addEventListener("load", function () {
     });
 });
 
-// Start birthday song on first interaction if autoplay was blocked
+// Start birthday song on first user interaction.
+// This is important for Android browsers.
+
 function unlockBirthdayMusic() {
-  if (!birthdayStarted && !romanticStarted) {
-    birthdayMusic
-      .play()
-      .then(() => {
-        birthdayStarted = true;
-        console.log("Birthday song started after interaction!");
-      })
-      .catch(() => {});
+  if (birthdayStarted || romanticStarted || musicSwitched) {
+    return;
   }
+
+  birthdayMusic
+    .play()
+    .then(() => {
+      birthdayStarted = true;
+
+      console.log("Birthday song started after interaction!");
+    })
+    .catch((error) => {
+      console.log("Birthday music playback issue:", error);
+    });
 }
+
+// Pointer interaction works on modern Android, iOS and desktop.
 
 document.addEventListener("pointerdown", unlockBirthdayMusic, {
   once: true,
+  capture: true,
 });
 
-// Switch from birthday song to romantic song
+// Fallback for browsers that do not support pointer events.
+
+document.addEventListener("touchstart", unlockBirthdayMusic, {
+  once: true,
+  capture: true,
+  passive: true,
+});
+
+// Switch from birthday song to romantic song.
+
 function switchToRomanticSong() {
-  // Stop ALL audio first
-  document.querySelectorAll("audio").forEach((audio) => {
-    audio.pause();
-    audio.currentTime = 0;
-  });
+  if (musicSwitched) {
+    return;
+  }
+
+  musicSwitched = true;
+
+  // Stop birthday song completely.
+
+  birthdayMusic.pause();
+  birthdayMusic.currentTime = 0;
 
   birthdayStarted = false;
-  romanticStarted = false;
 
-  // Play only romantic song
+  // Stop any other audio before playing romantic song.
+
+  document.querySelectorAll("audio").forEach((audio) => {
+    if (audio !== romanticMusic) {
+      audio.pause();
+      audio.currentTime = 0;
+    }
+  });
+
+  // Start romantic song.
+
+  romanticMusic.pause();
+  romanticMusic.currentTime = 0;
   romanticMusic.volume = 0.6;
 
   romanticMusic
     .play()
     .then(() => {
       romanticStarted = true;
-      console.log("Romantic music playing");
+
+      console.log("Romantic song started!");
     })
     .catch((error) => {
-      console.log("Music error:", error);
+      console.log("Romantic music playback issue:", error);
     });
 }
 
-// =====================================
-// FLOATING HEARTS
-// =====================================
+/* =====================================
+   FLOATING HEARTS
+===================================== */
 
 const heartsContainer = document.getElementById("floatingHearts");
 
@@ -377,6 +391,7 @@ function createHeart() {
     heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
 
   heart.style.left = Math.random() * 100 + "%";
+
   heart.style.fontSize = 12 + Math.random() * 22 + "px";
 
   const duration = 5 + Math.random() * 7;
@@ -392,9 +407,9 @@ function createHeart() {
 
 setInterval(createHeart, 450);
 
-// =====================================
-// FALLING ROSE PETALS
-// =====================================
+/* =====================================
+   FALLING ROSE PETALS
+===================================== */
 
 const petalsContainer = document.getElementById("petals");
 
@@ -402,9 +417,11 @@ function createPetal() {
   const petal = document.createElement("span");
 
   petal.className = "petal";
+
   petal.innerHTML = "🌸";
 
   petal.style.left = Math.random() * 100 + "%";
+
   petal.style.fontSize = 12 + Math.random() * 15 + "px";
 
   const duration = 7 + Math.random() * 6;
@@ -421,6 +438,7 @@ function createPetal() {
 setInterval(createPetal, 1800);
 
 // Initial effects
+
 for (let i = 0; i < 12; i++) {
   setTimeout(createHeart, i * 250);
 }
@@ -429,9 +447,9 @@ for (let i = 0; i < 5; i++) {
   setTimeout(createPetal, i * 500);
 }
 
-// =====================================
-// VERTICAL CAKE CUTTING
-// =====================================
+/* =====================================
+   VERTICAL CAKE CUTTING
+===================================== */
 
 const cakeScreen = document.getElementById("cakeScreen");
 const cakeArea = document.getElementById("cakeArea");
@@ -448,7 +466,8 @@ let cakeCutComplete = false;
 let cutStartY = 0;
 let cutProgress = 0;
 
-// Start cutting from the top-centre
+// Start cutting from the top-centre.
+
 cakeArea.addEventListener("pointerdown", function (e) {
   if (cakeCutComplete) return;
 
@@ -480,27 +499,32 @@ cakeArea.addEventListener("pointerdown", function (e) {
   e.preventDefault();
 });
 
-// Move knife and reveal photo
+// Move knife and reveal photo.
+
 cakeArea.addEventListener("pointermove", function (e) {
   if (!isCutting || cakeCutComplete) return;
 
   const cakeRect = birthdayCake.getBoundingClientRect();
+
   const areaRect = cakeArea.getBoundingClientRect();
 
   const distance = Math.max(0, e.clientY - cutStartY);
 
   cutProgress = Math.max(0, Math.min(100, (distance / cakeRect.height) * 100));
 
-  // Knife stays in centre while moving vertically
+  // Knife stays in centre while moving vertically.
+
   cakeKnife.style.left =
     cakeRect.left + cakeRect.width / 2 - areaRect.left + "px";
 
   cakeKnife.style.top = e.clientY - areaRect.top + "px";
 
-  // Reveal photo gradually
+  // Reveal photo gradually.
+
   cakePhotoReveal.style.clipPath = `inset(0 0 ${100 - cutProgress}% 0)`;
 
-  // Update instruction
+  // Update instruction.
+
   cakeInstruction.textContent =
     cutProgress < 100
       ? "Keep going Somu! Cut all the way down ❤️"
@@ -521,15 +545,17 @@ cakeArea.addEventListener("pointercancel", function () {
   isCutting = false;
 });
 
-// =====================================
-// COMPLETE CAKE CUT
-// =====================================
+/* =====================================
+   COMPLETE CAKE CUT
+===================================== */
 
 function completeCakeCut() {
   if (cakeCutComplete) return;
 
   cakeCutComplete = true;
+
   isCutting = false;
+
   cutProgress = 100;
 
   cakeKnife.style.display = "none";
@@ -540,21 +566,24 @@ function completeCakeCut() {
 
   cakePhotoReveal.style.clipPath = "inset(0 0 0 0)";
 
-  // Separate the cake halves
+  // Separate the cake halves.
+
   birthdayCake.classList.add("fully-cut");
 
-  // Celebration effects
+  // Celebration effects.
+
   createCakeConfetti();
 
-  // Show final cake photo reveal
+  // Show final cake photo reveal.
+
   setTimeout(() => {
     cakeReveal.classList.add("show");
   }, 1400);
 }
 
-// =====================================
-// CAKE CONFETTI
-// =====================================
+/* =====================================
+   CAKE CONFETTI
+===================================== */
 
 function createCakeConfetti() {
   const symbols = ["💗", "✨", "🎉", "💕", "🌸", "❤️"];
@@ -565,10 +594,15 @@ function createCakeConfetti() {
     item.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
 
     item.style.position = "fixed";
+
     item.style.left = Math.random() * 100 + "vw";
+
     item.style.top = "-30px";
+
     item.style.fontSize = "22px";
+
     item.style.zIndex = "3000";
+
     item.style.pointerEvents = "none";
 
     document.body.appendChild(item);
@@ -598,23 +632,24 @@ function createCakeConfetti() {
   }
 }
 
-// =====================================
-// CONTINUE TO BIRTHDAY MESSAGES
-// =====================================
-
-// =====================================
-// CONTINUE TO BIRTHDAY MESSAGES
-// =====================================
+/* =====================================
+   CONTINUE TO BIRTHDAY MESSAGES
+===================================== */
 
 cakeNextBtn.addEventListener("click", function () {
-  birthdayMusic.pause();
-  birthdayMusic.currentTime = 0;
+  // Switch music first, during the user's click interaction.
 
   switchToRomanticSong();
 
+  // Hide cake reveal.
+
   cakeReveal.classList.remove("show");
+
   cakeScreen.classList.remove("active");
+
   document.body.classList.remove("cake-mode");
+
+  // Open birthday messages.
 
   startSurprise();
 });
