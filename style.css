@@ -114,7 +114,11 @@ button {
   overflow: hidden;
 
   background:
-    radial-gradient(circle at 50% 30%, rgba(255, 79, 154, 0.2), transparent 45%),
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(255, 79, 154, 0.2),
+      transparent 45%
+    ),
     linear-gradient(135deg, #170914, #350d25, #120710);
 }
 
@@ -317,29 +321,37 @@ button {
 
 .cut-arrow {
   position: absolute;
-  z-index: 20;
-  top: -42px;
+  z-index: 50;
+  top: -55px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #fff;
+  justify-content: center;
+  gap: 5px;
+  background: rgba(255, 79, 154, 0.18);
+  border: 1px solid #ff75b4;
+  border-radius: 20px;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
   animation: arrowBounce 1s infinite;
-  pointer-events: none;
 }
 
 .cut-arrow span {
-  font-size: 35px;
-  color: #ff75b4;
-  text-shadow: 0 0 15px #ff1685;
+  font-size: 30px;
 }
 
 .cut-arrow small {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   color: #ffc2dc;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
+  white-space: nowrap;
 }
 
 .cut-arrow.hide {
@@ -347,7 +359,8 @@ button {
 }
 
 @keyframes arrowBounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, 0);
   }
 
@@ -426,7 +439,9 @@ button {
   visibility: hidden;
   pointer-events: none;
 
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    visibility 0.8s ease;
 }
 
 .cake-reveal.show {
@@ -571,7 +586,8 @@ button {
 }
 
 @keyframes envelopeFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
 
@@ -581,7 +597,8 @@ button {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
 
@@ -724,7 +741,8 @@ button {
 }
 
 @keyframes photoFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
 
@@ -1227,18 +1245,18 @@ body.cake-mode .navigation {
 }
 
 #cakeArea {
-    touch-action: none;
-    -webkit-user-select: none;
-    user-select: none;
-    cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
 }
 
 #birthdayCake {
-    touch-action: none;
-    -webkit-user-select: none;
-    user-select: none;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 #cakeKnife {
-    pointer-events: none;
+  pointer-events: none;
 }
