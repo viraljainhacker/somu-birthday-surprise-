@@ -1,113 +1,250 @@
 <!doctype html>
-
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Happy Birthday Somu ❤️</title>
 
     <link rel="stylesheet" href="style.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
   </head>
 
-  <body>
-    <!-- Background Decorations -->
-    <div class="floating-hearts" id="floatingHearts"></div>
-    <div class="petals" id="petals"></div>
+  <body class="cake-mode">
+    <!-- CAKE CUTTING SCREEN -->
+    <section id="cakeScreen" class="active">
+      <div class="cake-heading">
+        <h1>Happy Birthday Somu! 🎂</h1>
 
-    <!-- Background Music -->
-    <audio id="birthdayMusic" loop autoplay>
-      <source src="birthday-song.mp3" type="audio/mpeg" />
-    </audio>
+        <p>A little surprise before your special messages ❤️</p>
 
-    <!-- Welcome Screen -->
-    <section id="welcomeScreen" class="screen active">
-      <div class="welcome-card">
-        <div class="welcome-heart">❤️</div>
-
-        <p class="small-heading">A Little Surprise For</p>
-
-        <h1>Happy Birthday</h1>
-
-        <h2>Somu CEO Baby 💗</h2>
-
-        <p class="welcome-text">
-          Some people are special even without meeting them. And you are one of
-          those people.
+        <p class="cake-instruction" id="cakeInstruction">
+          Drag the knife down through the centre of the cake! 🔪
         </p>
-
-        <p class="welcome-subtext">I made something special for you. ✨</p>
-
-        <button class="main-btn" onclick="startSurprise()">
-          Open Your Surprise 💝
-        </button>
-      </div>
-    </section>
-
-    <!-- Birthday Message Pages -->
-    <div id="messagePages"></div>
-
-    <!-- Gallery Page -->
-    <section id="galleryPage" class="screen">
-      <div class="section-heading">
-        <p class="small-heading">Beautiful Memories</p>
-
-        <h1>Our Little Gallery 📸</h1>
-
-        <p>A collection of your beautiful moments ❤️</p>
       </div>
 
-      <div id="galleryGrid" class="gallery-grid"></div>
+      <div class="cake-area" id="cakeArea">
+        <div class="cut-arrow" id="cutArrow">
+          <span>⬇</span>
+          <small>Cut Here</small>
+        </div>
 
-      <button class="main-btn gallery-next-btn" onclick="showFinalPage()">
-        One Last Thing 💗
-      </button>
-    </section>
+        <div class="cake-knife" id="cakeKnife" aria-hidden="true">🔪</div>
 
-    <!-- Final Page -->
-    <section id="finalPage" class="screen">
-      <div class="final-card">
-        <div class="final-heart">💗</div>
+        <div class="cake" id="birthdayCake">
+          <div class="cake-photo-reveal" id="cakePhotoReveal">
+            <img src="photo1.jpeg" alt="Somya" />
+          </div>
 
-        <p class="small-heading">For Someone Special</p>
+          <div class="cake-half left">
+            <div class="cake-top">
+              <span>🕯️</span>
+              <span>🕯️</span>
+              <span>🕯️</span>
+            </div>
 
-        <h1>Happy Birthday, Somu!</h1>
+            <div class="cake-layer cake-layer-top"></div>
+            <div class="cake-layer cake-layer-middle"></div>
+            <div class="cake-layer cake-layer-bottom"></div>
 
-        <h2>My Somu CEO Baby 🥹❤️</h2>
+            <div class="cake-decoration">♥ ♥ ♥</div>
+          </div>
 
-        <p class="final-message">
-          Distance doesn't matter when someone holds a special place in your
-          heart. We may not have met yet, but I'm genuinely glad that I know
-          you.
-        </p>
+          <div class="cake-half right">
+            <div class="cake-top">
+              <span>🕯️</span>
+              <span>🕯️</span>
+              <span>🕯️</span>
+            </div>
 
-        <p class="final-message">
-          Keep smiling, keep shining and keep being the amazing person you are.
-        </p>
+            <div class="cake-layer cake-layer-top"></div>
+            <div class="cake-layer cake-layer-middle"></div>
+            <div class="cake-layer cake-layer-bottom"></div>
 
-        <p class="final-wish">
-          May your life always be filled with happiness, love and endless
-          beautiful moments. ❤️
-        </p>
-
-        <div class="signature">
-          With lots of love,<br />
-          <span>Viral ❤️</span>
+            <div class="cake-decoration">♥ ♥ ♥</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Next Button Navigation -->
-    <div id="navigation">
-      <button id="nextBtn" class="main-btn">Next Surprise →</button>
+    <!-- CAKE PHOTO REVEAL -->
+    <div class="cake-reveal" id="cakeReveal">
+      <h2>Happy Birthday Somu! ❤️</h2>
+
+      <div class="reveal-photo">
+        <img src="photo1.jpeg" alt="Somya" />
+      </div>
+
+      <p>The sweetest girl deserves the sweetest surprises! 🥹💕</p>
+
+      <button id="cakeNextBtn" class="cake-next-btn">
+        Continue to Your Surprise 💖
+      </button>
     </div>
 
-    <!-- JavaScript -->
+    <!-- BACKGROUND EFFECTS -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <div class="petals" id="petals"></div>
+
+    <!-- BIRTHDAY SONG - CAKE SCREEN -->
+    <audio id="birthdayMusic" loop autoplay>
+      <source src="birthday-song.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- ROMANTIC SONG - MAIN SURPRISE -->
+    <audio id="romanticMusic" loop>
+      <source src="romantic-song.mp3" type="audio/mpeg" />
+    </audio>
+    <!-- MAIN WEBSITE -->
+    <main id="app">
+      <!-- WELCOME PAGE -->
+      <section class="page" id="welcomePage">
+        <div class="welcome-content">
+          <div class="envelope">
+            <i class="fa-solid fa-envelope"></i>
+            <span>💗</span>
+          </div>
+
+          <p class="small-heading">A LITTLE SURPRISE MADE WITH LOVE</p>
+
+          <h1>
+            Happy Birthday
+            <span>Somya Bansal</span>
+          </h1>
+
+          <h2>My Cute Somu CEO Baby 💗</h2>
+
+          <p class="welcome-message">
+            Heyyy Somuuu! 🥹❤️
+            <br /><br />
+            I have made something special for you. Something filled with love,
+            memories, smiles and lots of cute little surprises.
+            <br /><br />
+            So, my kutti baby, are you ready?
+          </p>
+
+          <button class="main-btn" onclick="startSurprise()">
+            Open Your Surprise
+            <i class="fa-solid fa-heart"></i>
+          </button>
+
+          <p class="bottom-note">Made with lots of love by Viral ❤️</p>
+        </div>
+      </section>
+
+      <!-- 10 MESSAGE PAGES GENERATED BY JAVASCRIPT -->
+      <section id="messagePages"></section>
+
+      <!-- GALLERY PAGE -->
+      <section class="page" id="galleryPage">
+        <div class="gallery-content">
+          <p class="small-heading">A LITTLE COLLECTION OF HAPPINESS</p>
+
+          <h1>My Beautiful Somu <span>♡</span></h1>
+
+          <p class="gallery-subtitle">10 Pictures, Infinite Compliments ❤️</p>
+
+          <div class="gallery-grid" id="galleryGrid"></div>
+
+          <p class="gallery-message">
+            Every picture has its own charm, but every picture has one thing in
+            common...
+            <br />
+            You look beautiful in all of them, CEO Baby! 🥹
+          </p>
+
+          <button class="main-btn" onclick="showFinalPage()">
+            One Last Surprise
+            <i class="fa-solid fa-heart"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- FINAL PAGE -->
+      <section class="page" id="finalPage">
+        <div class="final-content">
+          <div class="final-heart">❤️</div>
+
+          <p class="small-heading">FROM MY HEART TO YOU</p>
+
+          <h1>
+            Happy Birthday
+            <span>Somu ❤️</span>
+          </h1>
+
+          <div class="final-message">
+            <p>
+              Somu, I honestly don't know how to explain how special you have
+              become.
+            </p>
+
+            <p>
+              It's funny how two people can live so far away from each other,
+              haven't even met yet, and still create such a lovely connection.
+            </p>
+
+            <p>
+              We have talked only a few times on calls, for a little while, but
+              somehow those little conversations became something worth smiling
+              about.
+            </p>
+
+            <p>
+              I really wish that one day we finally meet, sit together, laugh
+              endlessly, tease each other and create memories that we can
+              remember forever.
+            </p>
+
+            <p>
+              Until that day comes, I just want you to know that you deserve all
+              the happiness, love, success and beautiful things this world has
+              to offer.
+            </p>
+
+            <p>
+              Never stop smiling, never doubt yourself, and never forget how
+              special you are.
+            </p>
+
+            <p>
+              Stay the same crazy, cute, adorable and sometimes irritating kutti
+              baby. 😂❤️
+            </p>
+
+            <h2>Happy Birthday, My CEO Baby! 🎂</h2>
+
+            <h3>
+              With lots of love,
+              <br />
+              Your Viral ❤️
+            </h3>
+          </div>
+
+          <div class="birthday-cake">🎂</div>
+
+          <p class="ending">Stay happy forever, Somu. ♡</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- NAVIGATION -->
+    <div class="navigation" id="navigation">
+      <button id="nextBtn" onclick="nextPage()">
+        Next
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
